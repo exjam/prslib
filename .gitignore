@@ -1,0 +1,6 @@
+Debug/*
+prs/Debug/*
+*.suo
+*.sdf
+*.opensdf
+
