@@ -12,6 +12,9 @@
 #include "whitespace_parser.h"
 #include "util.h"
 
+namespace prs
+{
+
 template<typename Check>
 struct not_parser : public parser<not_parser<Check>>
 {
@@ -57,5 +60,7 @@ inline auto operator !(const Parser &parser)
 {
    return make_not_parser(parser);
 }
+
+} // namespace prs
 
 #endif // PRS_NOT_PARSER_H

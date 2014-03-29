@@ -4,6 +4,9 @@
 #include "base_parser.h"
 #include "rule.h"
 
+namespace prs
+{
+
 /*
  * Returns std::true_type if type T is a parser<> or rule<> type
  */
@@ -16,7 +19,7 @@ std::true_type is_parser_or_rule(const rule<A, B, C, D>& = rule<A, B, C, D>());
 std::false_type is_parser_or_rule(...);
 
 /*
- * Can't use && with template bool on Visual Studio ...
+ * Needed because VS2013 is messy...
  */
 template<bool _Test1, bool _Test2, typename _Ty = void>
 struct enable_if_both
@@ -28,5 +31,7 @@ struct enable_if_both<true, true, _Ty>
 {
    typedef _Ty type;
 };
+
+} // namespace prs
 
 #endif

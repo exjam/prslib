@@ -10,6 +10,9 @@
 
 #include "base_parser.h"
 
+namespace prs
+{
+
 template<typename Char>
 struct char_parser : public parser<char_parser<Char>>
 {
@@ -41,5 +44,7 @@ inline auto char_(Char ch)
 {
    return char_parser<Char> { ch };
 }
+
+} // namespace prs
 
 #endif // PRS_CHAR_PARSER_H

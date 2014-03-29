@@ -5,6 +5,9 @@
  * Parses with the .whitespace_parser variable in Context
  */
 
+namespace prs
+{
+
 struct whitespace_parser
 {
    template<typename Iterator, typename Context>
@@ -19,6 +22,8 @@ struct whitespace_parser
       return true;
    }
 };
+
+} // namespace prs
 
 #endif // PRS_WHITESPACE_PARSER_H
 

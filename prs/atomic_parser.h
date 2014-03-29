@@ -11,6 +11,9 @@
 #include "base_parser.h"
 #include "util.h"
 
+namespace prs
+{
+
 template<typename Parser>
 struct atomic_parser : public parser<atomic_parser<Parser>>
 {
@@ -48,5 +51,7 @@ inline auto atomic(const Parser &parser)
 {
    return make_atomic_parser(parser);
 }
+
+} // namespace prs
 
 #endif // PRS_ATOMIC_PARSER_H

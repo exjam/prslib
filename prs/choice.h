@@ -9,6 +9,9 @@
 #include "optional.h"
 #include <tuple>
 
+namespace prs
+{
+
 template<typename ...Ts>
 class choice : public std::tuple<Ts...> {
 public:
@@ -105,5 +108,7 @@ auto make_choice(T a, T b, Choice which)
 {
    return which == Choice::Left ? a : b;
 }
+
+} // namespace prs
 
 #endif // PRS_CHOICE_H

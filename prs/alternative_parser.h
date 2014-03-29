@@ -14,6 +14,9 @@
 #include "choice.h"
 #include "util.h"
 
+namespace prs
+{
+
 template<typename Left, typename Right>
 struct alternative_parser : public parser<alternative_parser<Left, Right>>
 {
@@ -77,5 +80,7 @@ inline auto operator |(const Left &left, const Right &right)
 {
    return make_alternative_parser(left, right);
 }
+
+} // namespace prs
 
 #endif // PRS_ALTERNATIVE_PARSER_H

@@ -13,6 +13,9 @@
 #include "util.h"
 #include <vector>
 
+namespace prs
+{
+
 template<typename Repeat>
 struct zero_or_more_parser : public parser<zero_or_more_parser<Repeat>>
 {
@@ -64,5 +67,7 @@ inline auto operator *(const Parser &parser)
 {
    return make_zero_or_more_parser(parser);
 }
+
+} // namespace prs
 
 #endif // PRS_ZERO_OR_MORE_PARSER_H

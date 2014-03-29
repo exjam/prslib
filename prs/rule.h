@@ -8,6 +8,9 @@
 #include "base_parser.h"
 #include <functional>
 
+namespace prs
+{
+
 template<typename AstType, typename Iterator, typename Context, bool Atomic = false>
 class rule
 {
@@ -88,5 +91,7 @@ inline auto make_rule_or_parser(const parser<Parser> &parser)
 {
    return parser.derived();
 }
+
+} // namespace prs
 
 #endif // PRS_RULE_H

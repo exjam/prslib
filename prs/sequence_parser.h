@@ -13,6 +13,9 @@
 #include "util.h"
 #include <tuple>
 
+namespace prs
+{
+
 template<typename ...A, typename ...B>
 inline auto make_sequence(std::tuple<A...> a, std::tuple<B...> b)
    -> std::tuple<A..., B...>
@@ -110,5 +113,7 @@ inline auto operator >>(const Left &left, const Right &right)
 {
    return make_sequence_parser(left, right);
 }
+
+} // namespace prs
 
 #endif // PRS_SEQUENCE_PARSER_H

@@ -10,6 +10,9 @@
 
 #include "base_parser.h"
 
+namespace prs
+{
+
 template<typename Char>
 struct char_range_parser : public parser<char_range_parser<Char>>
 {
@@ -49,5 +52,7 @@ inline auto char_any()
 {
    return char_range_parser<int> { 0, 999999 };
 }
+
+} // namespace prs
 
 #endif // PRS_CHAR_RANGE_PARSER_H

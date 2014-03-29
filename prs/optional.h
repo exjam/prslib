@@ -10,6 +10,9 @@
  * the TR std::optional and boost::optional uses static std::aligned_storage.
  */
 
+namespace prs
+{
+
 template<typename Type>
 class optional {
 public:
@@ -70,5 +73,7 @@ inline optional<Type> make_optional(const Type &t)
 {
    return optional<Type> { t };
 }
+
+} // namespace prs
 
 #endif // ifdef PRS_OPTIONAL_H

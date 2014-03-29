@@ -12,6 +12,9 @@
 #include "whitespace_parser.h"
 #include "util.h"
 
+namespace prs
+{
+
 template<typename Option>
 struct optional_parser : public parser<optional_parser<Option>>
 {
@@ -57,5 +60,7 @@ inline auto operator -(const Parser &parser)
 {
    return make_optional_parser(parser);
 }
+
+} // namespace prs
 
 #endif // PRS_OPTIONAL_PARSER_H

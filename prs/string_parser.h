@@ -13,6 +13,9 @@
 #include <vector>
 #include <tuple>
 
+namespace prs
+{
+
 template<typename String>
 struct string_parser : public parser<string_parser<String>>
 {
@@ -117,5 +120,7 @@ inline String ast_to_string(const std::vector<SubType> &xs)
 
    return str;
 }
+
+} // namespace prs
 
 #endif // PRS_STRING_PARSER_H
