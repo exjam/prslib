@@ -93,29 +93,37 @@ inline String ast_to_string(const optional<Option> &opt)
    return opt ? ast_to_string<String>(*opt) : String { };
 }
 
-template<typename String, std::size_t N = 0, typename... T>
-inline auto ast_to_string(const std::tuple<T...>&)
-   -> typename std::enable_if<N == sizeof...(T), String>::type
+template<typename String, std::size_t Pos, typename... Args>
+inline auto ast_to_string(const std::tuple<Args...>&)
+   -> typename
+         std::enable_if<
+            Pos >= std::tuple_size<std::tuple<Args...>>::value,
+            String>
+         ::type
 {
    return String { };
 }
 
-template<typename String, std::size_t N = 0, typename... T>
-inline auto ast_to_string(const std::tuple<T...>& tuple)
-   -> typename std::enable_if<N < sizeof...(T), String>::type
+template<typename String, std::size_t Pos = 0, typename... Args>
+inline auto ast_to_string(const std::tuple<Args...> &tuple)
+   -> typename
+         std::enable_if<
+            Pos < std::tuple_size<std::tuple<Args...>>::value,
+            String
+         >::type
 {
-   return ast_to_string<String>(std::get<N>(tuple))
-        + ast_to_string<String, N + 1, T...>(tuple);
+   return ast_to_string<String>(std::get<Pos>(tuple))
+        + ast_to_string<String, Pos + 1, Args...>(tuple);
 }
 
 template<typename String, typename SubType>
-inline String ast_to_string(const std::vector<SubType> &xs)
+inline String ast_to_string(const std::vector<SubType> &vs)
 {
    String str;
 
    /* Can't use String{ xs.begin(), xs.end() } if SubType != string::val_type */
-   for (auto x : xs) {
-      str.append(ast_to_string<String>(x));
+   for (auto &v : vs) {
+      str.append(ast_to_string<String>(v));
    }
 
    return str;

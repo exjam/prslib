@@ -22,6 +22,22 @@ public:
    }
 
    template <typename Parser>
+   rule(parser<Parser> parser)
+   {
+      m_impl =
+         [parser](Iterator &first, Iterator last, Context &ctx, value_type &myv) {
+            typename Parser::value_type v;
+
+            if (parser.derived().template parse<Iterator, Context, Atomic>(first, last, ctx, v)) {
+               myv.construct(std::move(v));
+               return true;
+            }
+
+            return false;
+         };
+   }
+
+   template <typename Parser>
    void operator=(const parser<Parser> &parser)
    {
       m_impl =
@@ -29,7 +45,7 @@ public:
             typename Parser::value_type v;
 
             if (parser.derived().template parse<Iterator, Context, Atomic>(first, last, ctx, v)) {
-               myv.construct(v);
+               myv.construct(std::move(v));
                return true;
             }
 

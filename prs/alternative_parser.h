@@ -13,6 +13,7 @@
 #include "whitespace_parser.h"
 #include "choice.h"
 #include "util.h"
+#include "rule.h"
 
 namespace prs
 {

@@ -11,6 +11,7 @@
 #include "base_parser.h"
 #include "whitespace_parser.h"
 #include "util.h"
+#include "rule.h"
 
 namespace prs
 {
